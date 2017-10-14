@@ -1,0 +1,4 @@
+# Programs run in docker etc.
+alias htop='docker run --rm -it --pid host htop'
+#alias adb='docker run --rm -ti --net container:adbd sorccu/adb adb'
+alias config='/usr/bin/git --git-dir=/home/irave/.cfg/ --work-tree=/home/irave'

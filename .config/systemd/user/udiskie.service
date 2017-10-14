@@ -1,0 +1,11 @@
+
+[Unit]
+Description=handle automounting
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/udiskie --no-notify --tray --use-udisks2
+Restart=always
+
+[Install]
+WantedBy=default.target
