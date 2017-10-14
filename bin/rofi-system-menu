@@ -1,0 +1,35 @@
+#!/bin/bash
+
+confirm() {
+    echo -e "Yes\nNo" | rofi -dmenu -i -format d -selected-row 1 -p "${1:-Confirm: }"
+}
+
+reload="Reload i3 config"
+restarti3="Restart i3"
+quiti3="Quit i3"
+suspend="Suspend"
+hybrid="Hybrid-Sleep"
+reboot="Reboot"
+shutdown="Shutdown"
+
+
+content="$suspend\n$hybrid\n$reboot\n$shutdown\n$reload\n$restarti3\n$quiti3"
+
+selection=$(echo -e $content | rofi -dmenu -i -markup-rows -p "Action: ")
+case $selection in
+    $reload)
+        i3-msg reload ;;
+    $restarti3)
+        i3-msg restart ;;
+    $quiti3)
+    	#i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'
+	[[ $(confirm) = 1 ]] && (i3-msg exit) ;;
+    $suspend)
+        [[ $(confirm) = 1 ]] && (systemctl suspend -i) ;;
+    $hybrid)
+        [[ $(confirm) = 1 ]] && (systemctl hybrid-sleep -i) ;;
+    $reboot)
+        [[ $(confirm) = 1 ]] && (systemctl reboot -i) ;;
+    $shutdown)
+        [[ $(confirm) = 1 ]] && (systemctl poweroff -i) ;;
+esac

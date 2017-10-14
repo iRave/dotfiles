@@ -1,0 +1,4 @@
+#! /usr/bin/zsh
+
+feh --recursive --randomize --bg-fill ~/Nextcloud/Photos/Wallpaper
+#swaymsg output "*" background "$(find /home/irave/Nextcloud/Photos/Wallpaper -type f | shuf -n 1 | sed 's/ /\\ /g')" fill
