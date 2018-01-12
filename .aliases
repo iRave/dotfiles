@@ -2,3 +2,10 @@
 alias htop='docker run --rm -it --pid host htop'
 #alias adb='docker run --rm -ti --net container:adbd sorccu/adb adb'
 alias config='/usr/bin/git --git-dir=/home/irave/.cfg/ --work-tree=/home/irave'
+
+alias wakeServer='wol 00:01:2E:27:F2:10'
+alias hibernateServer='ssh irave@archserver sudo systemctl hibernate'
+
+function sst () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
+
+alias vless='vim -u $(find /usr/share/vim/vim80/ | grep macros/less.vim)'
