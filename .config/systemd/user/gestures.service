@@ -1,11 +1,11 @@
 [Unit]
 Description=Enable touchpad gestures
 #After=graphical.target suspend.target hibernate.target
-After=display-manager.service
+After=display-manager.service suspend.target hibernate.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/libinput-gestures-setup start
+ExecStart=/usr/bin/libinput-gestures-setup restart
 ExecStop=/usr/bin/libinput-gestures-setup stop
 #ExecStart=/usr/bin/bash /home/irave/bin/gestures.sh
 #TimeoutSec=0
